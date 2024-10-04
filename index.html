@@ -1,0 +1,90 @@
+<!-- Como estoquista eu quero ter acesso aos produtos cadastrados para saber a localização dos mesmos no armazém.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque - Jogos de Tabuleiro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .produto {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .localizacao {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        #detalhes-localizacao {
+            background-color: #e9e9e9;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Controle de Estoque - Jogos de Tabuleiro</h1>
+
+    <div id="produtos-registrados">
+        <h2>Produtos Registrados</h2>
+        <div class="produto">
+            <p><strong>Produto:</strong> Catan - Edição Especial</p>
+            <p><strong>Quantidade:</strong> 150 unidades</p>
+            <p><strong>Localização:</strong> <span class="localizacao" onclick="mostrarDetalhes('A-12-4')">A-12-4</span></p>
+        </div>
+        <div class="produto">
+            <p><strong>Produto:</strong> Ticket to Ride - Europa</p>
+            <p><strong>Quantidade:</strong> 85 unidades</p>
+            <p><strong>Localização:</strong> <span class="localizacao" onclick="mostrarDetalhes('B-15-2')">B-15-2</span></p>
+        </div>
+        <div class="produto">
+            <p><strong>Produto:</strong> Dixit - Expansão Odyssey</p>
+            <p><strong>Quantidade:</strong> 50 unidades</p>
+            <p><strong>Localização:</strong> <span class="localizacao" onclick="mostrarDetalhes('C-8-1')">C-8-1</span></p>
+        </div>
+    </div>
+
+    <div id="detalhes-localizacao">
+        <h3>Detalhes da Localização</h3>
+        <p id="localizacao-info"></p>
+        <p><strong>Capacidade Máxima:</strong> 200 unidades</p>
+        <p><strong>Status:</strong> <span id="status-ocupacao"></span></p>
+    </div>
+
+    <script>
+        function mostrarDetalhes(localizacao) {
+            const info = document.getElementById('localizacao-info');
+            const statusOcupacao = document.getElementById('status-ocupacao');
+            
+            // Simulação de detalhes do armazém
+            const dadosLocalizacao = {
+                'A-12-4': { ocupacao: 150, max: 200 },
+                'B-15-2': { ocupacao: 85, max: 200 },
+                'C-8-1': { ocupacao: 50, max: 100 }
+            };
+            
+            const detalhes = dadosLocalizacao[localizacao];
+            
+            info.textContent = 'Localização: ' + localizacao;
+            statusOcupacao.textContent = `${detalhes.ocupacao} unidades ocupando ${detalhes.max} espaços disponíveis.`;
+
+            document.getElementById('detalhes-localizacao').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
